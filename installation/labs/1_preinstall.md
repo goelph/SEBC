@@ -474,6 +474,7 @@ then restart mysql.
 
 # Step 3
 
+```
 mgr # systemctl enable mysqld
 Created symlink from /etc/systemd/system/mysql.service to /usr/lib/systemd/system/mysqld.service.
 Created symlink from /etc/systemd/system/multi-user.target.wants/mysqld.service to /usr/lib/systemd/system/mysqld.service.
@@ -500,6 +501,7 @@ Sep 19 21:30:17 ip-172-31-63-2.ec2.internal mysqld_safe[17456]: 160919 21:30:...
 Sep 19 21:30:17 ip-172-31-63-2.ec2.internal mysqld_safe[17456]: 160919 21:30:...
 Sep 19 21:30:19 ip-172-31-63-2.ec2.internal systemd[1]: Started MySQL Communi...
 Hint: Some lines were ellipsized, use -l to show in full.
+```
 
 # Step 4
 
