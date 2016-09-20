@@ -111,4 +111,66 @@ Installed:
 Complete!
 ```
 
-## Step 4 - start the Cloudera Manager Server
+## Step 4 - Preparing mysql database for cloudera manager
+
+`NOTE: THIS PART DOES NOT APPEAR IN THE 5.8 DOCUMENTATION!!`
+
+### create various database schemas, password is extremely simple
+
+```
+mysql-setup.sh
+==============
+create database amon DEFAULT CHARACTER SET utf8;
+grant all on amon.* TO 'amon'@'%' IDENTIFIED BY 'password';
+
+create database smon DEFAULT CHARACTER SET utf8;
+grant all on smon.* TO 'smon'@'%' IDENTIFIED BY 'password';
+
+create database rman DEFAULT CHARACTER SET utf8;
+grant all on rman.* TO 'rman'@'%' IDENTIFIED BY 'password';
+
+create database hmon DEFAULT CHARACTER SET utf8;
+grant all on hmon.* TO 'hmon'@'%' IDENTIFIED BY 'password';
+
+create database hive DEFAULT CHARACTER SET utf8;
+grant all on hive.* TO 'hive'@'%' IDENTIFIED BY 'password';
+
+create database nav DEFAULT CHARACTER SET utf8;
+grant all on nav.* TO 'nav'@'%' IDENTIFIED BY 'password';
+create database cmserver default character set utf8;
+grant all on cmserver.* to 'cmserveruser'@'%' identified by 'password';
+```
+
+### Ensure mysql-connector-java jar file is in /usr/share/java
+
+I had to create a soft link for it to be discovered:
+
+```
+[root@ip-172-31-63-2 schema]# cd /usr/share/java
+[root@ip-172-31-63-2 java]# ls
+mysql-connector-java-5.1.39-bin.jar
+[root@ip-172-31-63-2 java]# ln -s mysql-connector-java-5.1.39-bin.jar /usr/share/java/mysql-connector-java.jar
+[root@ip-172-31-63-2 java]# ls -l
+total 968
+-rw-r--r--. 1 root root 989497 Sep 19 22:46 mysql-connector-java-5.1.39-bin.jar
+lrwxrwxrwx. 1 root root     35 Sep 20 07:59 mysql-connector-java.jar -> mysql-connector-java-5.1.39-bin.jar
+```
+
+## Prepare CM database
+
+```
+[root@ip-172-31-63-2 java]# /usr/share/cmf/schema/scm_prepare_database.sh mysql cmserver cmserveruser password
+JAVA_HOME=/usr/java/jdk1.7.0_67-cloudera/jre
+Verifying that we can write to /etc/cloudera-scm-server
+Creating SCM configuration file in /etc/cloudera-scm-server
+Executing:  /usr/java/jdk1.7.0_67-cloudera/jre/bin/java -cp /usr/share/java/mysql-connector-java.jar:/usr/share/java/oracle-connector-java.jar:/usr/share/cmf/schema/../lib/* com.cloudera.enterprise.dbutil.DbCommandExecutor /etc/cloudera-scm-server/db.properties com.cloudera.cmf.db.
+[                          main] DbCommandExecutor              INFO  Successfully connected to database.
+All done, your SCM database is configured correctly!
+```
+
+# Step 5 - Start SCM service
+
+```
+[root@ip-172-31-63-2 java]# service cloudera-scm-server start
+Starting cloudera-scm-server (via systemctl):              [  OK  ]
+```
