@@ -27,7 +27,7 @@ for the hdfs user and a keytab file for the mapred user on every host in your cl
 well as keytab files for the oozie and hue users on select hosts.
 ```
 
-#How do you upgrade the CM agents?
+# How do you upgrade the CM agents?
 
 
 ```
@@ -37,7 +37,7 @@ click on "Re-Run Upgrade wizard"
 
 Also upgraded during a full Cloudera upgrade via Cloudera Manager
 
-#Give the tsquery statement used to chart Hue's CPU utilization?
+# Give the tsquery statement used to chart Hue's CPU utilization?
 
 Chart Builder indicates that Hue CPU Cores Used is generated using:
 
@@ -46,14 +46,16 @@ select cpu_system_rate + cpu_user_rate where category=ROLE and serviceName=$SERV
 ```
 
 where $SERVICENAME = hue  $CLUSTERID = 1  
+```
 
-#Name all the roles that make up the Hive service
+# Name all the roles that make up the Hive service
 
+Hive service roles noted:
 * Hive Metastore Server
 * HiveServer2
 * Gateway (basically, clients can access Hive from nodes with this role using beeline CLI)
 
-#What steps must be completed before integrating Cloudera Manager with Kerberos?
+# What steps must be completed before integrating Cloudera Manager with Kerberos?
 
 From Cloudera Manager after selecting 'Enable Kerberos':
 ```
@@ -73,6 +75,7 @@ hosts.
 
 Cloudera Manager needs an account that has permissions to create other accounts in the KDC.
 ```
+
 Other documentation explains further:
 
 Ensure you have secured communication between the Cloudera Manager Server and Agents
