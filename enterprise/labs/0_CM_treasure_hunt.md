@@ -25,8 +25,10 @@ Search for 'Kerberos' and found a Kerberos Security Realm field (default is HADO
 From the Security doc: "Cloudera Manager can automatically create and deploy a keytab file
 for the hdfs user and a keytab file for the mapred user on every host in your cluster, as
 well as keytab files for the oozie and hue users on select hosts.
+```
 
 #How do you upgrade the CM agents?
+
 
 ```
 Hosts > All hosts
