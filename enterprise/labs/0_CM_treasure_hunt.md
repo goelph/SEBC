@@ -46,7 +46,6 @@ select cpu_system_rate + cpu_user_rate where category=ROLE and serviceName=$SERV
 ```
 
 where $SERVICENAME = hue  $CLUSTERID = 1  
-```
 
 # Name all the roles that make up the Hive service
 
