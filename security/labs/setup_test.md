@@ -137,6 +137,7 @@ Installed:
 
 Complete!
 ```
+
 ## Edit /var/kerberos/krb5kdc/kdc.conf on Kerberos server
 
 ```
@@ -155,7 +156,7 @@ Complete!
   max_life = 1d
   max_renewable_life = 7d
  }
- ``
+```
 
 ## Edit /etc/krb5.conf on Kerboros clients and place on all 5 servers
 
